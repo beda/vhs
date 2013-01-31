@@ -79,6 +79,11 @@ abstract class Tx_Vhs_ViewHelpers_Asset_AbstractAssetViewHelper extends Tx_Fluid
 	protected $tagBuilder;
 
 	/**
+	 * @var boolean
+	 */
+	protected $cached = FALSE;
+
+	/**
 	 * Example types: raw, meta, css, js.
 	 *
 	 * If a LESS stylesheet is being compiled the "type"
@@ -307,6 +312,21 @@ abstract class Tx_Vhs_ViewHelpers_Asset_AbstractAssetViewHelper extends Tx_Fluid
 			$settings = t3lib_div::array_merge_recursive_overrule($settings, $this->localSettings);
 		}
 		return $settings;
+	}
+	/**
+	 * @return boolean
+	 */
+	public function getCached() {
+		return $this->cached;
+	}
+
+	/**
+	 * @param boolean $cached
+	 */
+	public function setCached($cached) {
+		if (TRUE === is_bool($cached)) {
+			$this->cached = $cached;
+		};
 	}
 
 	/**
